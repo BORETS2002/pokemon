@@ -4,6 +4,10 @@ const elInput = document.querySelector(".search-js");
 
 const elSelect = document.querySelector(".select-js");
 const elsort = document.querySelector(".inputSort");
+const startY = document.querySelector(".startY");
+const endY = document.querySelector(".endY");
+
+
 
 
 const chopilganPoke = pokemons.splice(0 , 120);
@@ -122,12 +126,12 @@ evt.preventDefault()
 const elInputValue =  elInput.value.trim()
 const reGek = new RegExp ( elInputValue ,"gi")
 const fiterPoke = chopilganPoke.filter(item => {
-  const natija = item.name.match(reGek) && (elSelect.value == "all" || item.weaknesses.includes(elSelect.value) )
+  const natija = item.name.match(reGek) && (elSelect.value == "all" || item.weaknesses.includes(elSelect.value) ) && (startY.value == "" || Number(startY.value) <= item.candy_count) && (endY.value == "" || Number(endY.value) >= item.candy_count) 
   return natija ;
 })
 
  
-console.log(elsort.value);
+console.log(fiterPoke);
 if(fiterPoke.length > 0){
   pokeSort(fiterPoke , elsort.value)
   domDrew(fiterPoke , Lists)
