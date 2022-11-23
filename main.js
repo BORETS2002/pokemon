@@ -64,18 +64,20 @@ function pokeSort (arr,item){
 
 
 
+
 const arrSelect = []
 const selectFrag = document.createDocumentFragment()
 
 chopilganPoke.forEach(item => {
   item.weaknesses.forEach(i => {
-      if (!arrSelect.includes(i)){
-          arrSelect.push(i)
-      }
-  } )
- })
-
- arrSelect.forEach(item =>{
+    // if (!arrSelect.includes(i)){
+      arrSelect.push(i)
+      // }
+    } )
+  })
+  const NewSets =  new Set(arrSelect)
+console.log(NewSets);
+  NewSets.forEach(item =>{
    const option = document.createElement("option");
    option.textContent = item
    selectFrag.appendChild(option)
@@ -126,7 +128,7 @@ evt.preventDefault()
 const elInputValue =  elInput.value.trim()
 const reGek = new RegExp ( elInputValue ,"gi")
 const fiterPoke = chopilganPoke.filter(item => {
-  const natija = item.name.match(reGek) && (elSelect.value == "all" || item.weaknesses.includes(elSelect.value) ) && (startY.value == "" || Number(startY.value) <= item.candy_count) && (endY.value == "" || Number(endY.value) >= item.candy_count) 
+  const natija = item.name.match(reGek) && (elSelect.value == "all" || item.weaknesses.mat(elSelect.value) ) && (startY.value == "" || Number(startY.value) <= item.candy_count) && (endY.value == "" || Number(endY.value) >= item.candy_count) 
   return natija ;
 })
 
